@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-    </style>
 </head>
 <body>
 
@@ -18,8 +16,8 @@
         <button onclick="window.location.href='cadastro_usuarios.php'">Registrar Usuário</button>
         <button onclick="window.location.href='cadastro_tarefas.php'">Adicionar Tarefa</button>
         <button onclick="window.location.href='editar.php'">Editar Tarefa</button>
-        
     </div>
+
     <div class="board">
         <table>
             <thead>
@@ -31,31 +29,38 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
+                                        <td>
                         <?php
                         $sql = "SELECT * FROM tarefas WHERE status='a_fazer'";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
-                            echo "<div class='tarefa'><strong>".$row['titulo']."</strong><br>".$row['descricao']."</div>";
-                        }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        $sql = "SELECT * FROM tarefas WHERE status='em_andamento'";
-                        $result = $conn->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<div class='tarefa'><strong>".$row['titulo']."</strong><br>".$row['descricao']."</div>";
+                            echo "<div class='tarefa'>
+                                    <strong>".$row['titulo']."</strong><br>".$row['descricao']."
+                                  </div>";
                         }
                         ?>
                     </td>
 
                     <td>
                         <?php
-                        $sql = "SELECT * FROM tarefas WHERE status='feito'";
+                        $sql = "SELECT * FROM tarefas WHERE status='fazendo'";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
-                            echo "<div class='tarefa'><strong>".$row['titulo']."</strong><br>".$row['descricao']."</div>";
+                            echo "<div class='tarefa'>
+                                    <strong>".$row['titulo']."</strong><br>".$row['descricao']."
+                                  </div>";
+                        }
+                        ?>
+                    </td>
+
+                    <td>
+                        <?php
+                        $sql = "SELECT * FROM tarefas WHERE status='pronto'";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<div class='tarefa'>
+                                    <strong>".$row['titulo']."</strong><br>".$row['descricao']."
+                                  </div>";
                         }
                         ?>
                     </td>

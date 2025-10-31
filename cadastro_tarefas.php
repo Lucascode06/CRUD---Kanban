@@ -1,6 +1,7 @@
 <?php
 include 'db.php';
 
+// Consulta usuários
 $usuarios = $conn->query("SELECT * FROM usuarios");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,7 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = $conn->prepare("INSERT INTO tarefas (titulo, descricao, status, prioridade, usuario_id) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssii", $titulo, $descricao, $status, $prioridade, $usuario_id);
-    if($stmt->execute()) header("Location: index.php");
+    if ($stmt->execute()) {
+        header("Location: index.php");
+        exit;
+    }
 }
 ?>
 
@@ -26,35 +30,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div id="conte">
     <form method="post">
-    <label>Título:
-        <input type="text" name="titulo" required>
-    </label>
+        <label>Título:
+            <input type="text" name="titulo" required>
+        </label>
 
-    <label>Descrição:
-        <textarea name="descricao"></textarea>
-    </label>
+        <label>Descrição:
+            <textarea name="descricao"></textarea>
+        </label>
 
-    <label>Status:
-        <select name="status">
-            <option value="a_fazer">A Fazer</option>
-            <option value="fazendo">Fazendo</option>
-            <option value="pronto">Pronto</option>
-        </select>
-    </label>
+        <label>Status:
+            <select name="status">
+                <option value="a_fazer">A Fazer</option>
+                <option value="fazendo">Fazendo</option>
+                <option value="pronto">Pronto</option>
+            </select>
+        </label>
 
-    <label>Prioridade:
-        <input type="number" name="prioridade" value="1" min="1" max="5">
-    </label>
+        <label>Prioridade:
+            <input type="number" name="prioridade" value="1" min="1" max="5">
+        </label>
 
-    <label>Responsável:
-        <select name="usuario_id">
-        </select>
-    </label>
+        <label>Responsável:
+            <select name="usuario_id" required>
+                <option value="">usuário</option>
+                <?php while ($u = $usuarios->fetch_assoc()): ?>
+                    <option value="<?= $u['id'] ?>"><?= htmlspecialchars($u['nome']) ?></option>
+                <?php endwhile; ?>
+            </select>
+        </label>
 
-    <button type="submit">Adicionar</button>
-        </form>
+        <button type="submit">Adicionar</button>
+    </form>
 </div>
-<a href="index.php">Voltar</a>
 
+<a href="index.php">Voltar</a>
 </body>
 </html>
