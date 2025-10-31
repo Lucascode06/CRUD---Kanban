@@ -56,6 +56,22 @@ th {
     text-align: left;
 }
 
-.doing { background-color: #ffe082; }
-.done { background-color: #81c784; }
+#conte {
+  background-color: #b4b4b4;
+    color: #fff;
+    border-radius: 10px;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    align-items: center;
+}
+
+a {
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #0f3047;
+    text-decoration: none;
+}
 

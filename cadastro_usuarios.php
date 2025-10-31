@@ -30,12 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <div class="form-container">
-    <h1>Registrar Novo Usuário</h1>
-
-    <?php if (!empty($erro)): ?>
-        <p style="color:red; text-align:center;"><?= htmlspecialchars($erro) ?></p>
-    <?php endif; ?>
-
     <form method="post" class="task-form">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" placeholder="Digite o nome" required>
