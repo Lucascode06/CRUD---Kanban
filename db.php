@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $usuario = "root";
-$senha = "root";
-$banco = "kanban_db";
+$senha = "";
+$banco = "banco_kanban";
 
 $conn = new mysqli($host, $usuario, $senha, $banco);
 
